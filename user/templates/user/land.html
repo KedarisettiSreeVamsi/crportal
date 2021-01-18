@@ -1,0 +1,271 @@
+{% extends 'user/base.html' %}
+{% load qr_tags %}
+{% load news %}
+{% load requests %}
+{% block content %}
+    <div>
+        {% if request.user.is_authenticated %}
+         <p class="float-right shadow border border-success">{% qr_from_object request.user.profile "s" %}</p>
+        <br><br>
+         <h5>Hi! <p class="font-weight-bold"> {{request.user.first_name}} </p></h5>
+         <br>
+        {% endif %}
+    </div>
+<hr>
+
+<nav><br>
+    <small>click on pill to switch subjects. Switch to landscape mode for better experience.</small>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-link active" id="nav-tt-tab" data-toggle="tab" href="#nav-tt" role="tab" aria-controls="nav-tt" aria-selected="true">Timetable <sup class="badge badge-danger">new</sup></a>
+        <a class="nav-link" id="nav-sub-tab" data-toggle="tab" href="#nav-sub" role="tab" aria-controls="nav-sub" aria-selected="false">Subjects</a>
+        <a class="nav-link" id="nav-soa-tab" data-toggle="tab" href="#nav-soa" role="tab" aria-controls="nav-soa" aria-selected="false">SOA</a>
+        <a class="nav-link" id="nav-ecom-tab" data-toggle="tab" href="#nav-ecom" role="tab" aria-controls="nav-ecom" aria-selected="false">E-Com</a>
+        <a class="nav-link" id="nav-oscm-tab" data-toggle="tab" href="#nav-oscm" role="tab" aria-controls="nav-oscm" aria-selected="false">OSCM</a>
+        <a class="nav-link" id="nav-viva-tab" data-toggle="tab" href="#nav-viva" role="tab" aria-controls="nav-viva" aria-selected="false">VIVA</a>
+        <a class="nav-link" id="nav-project-tab" data-toggle="tab" href="#nav-project" role="tab" aria-controls="nav-project" aria-selected="false">Project</a>
+    </div>
+</nav>
+<div class="tab-content shadow" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-tt" role="tabpanel" aria-labelledby="nav-tt-tab">
+      <img src='/media/b13_tt.png' class="">
+  </div>
+  <div class="tab-pane fade show" id="nav-sub" role="tabpanel" aria-labelledby="nav-sub-tab">
+      <table class="table table-bordered table-hover">
+                <caption><small class="p-2">VIII semester syllabus(section: B13) updated at 20:00 on 07/01/2021</small></caption>
+                 <thead class=" font-weight-bold">
+                    <tr >
+                        <th scope="col">#</th>
+                        <th scope="col">Course Code</th>
+                        <th scope="col">Course Title</th>
+                        <th scope="col">Credits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="">
+                        <td>1</td>
+                        <td scope="row">EID 364</td>
+                        <td>Service Oriented Architecture</td>
+                        <td><b>3</b></td>
+                    </tr>
+                    <tr class="">
+                        <td>2</td>
+                        <td scope="row">EID 444</td>
+                        <td>E-Commerce</td>
+                        <td><b>3</b></td>
+                    </tr>
+                    <tr class="">
+                        <td>3</td>
+                        <td scope="row">EHS 402</td>
+                        <td> Operations and Supply Chain Management</td>
+                        <td><b>3</b></td>
+                    </tr>
+                    <tr class="">
+                        <td>4</td>
+                        <td scope="row">ECS 492</td>
+                        <td>Comprehensive Viva</td>
+                        <td><b>2</b></td>
+                    </tr>
+                    <tr class="">
+                        <td>5</td>
+                        <td scope="row">ECS 494</td>
+                        <td>Project Work</td>
+                        <td><b>8</b></td>
+                    </tr>
+                </tbody>
+            </table>
+  </div>
+  <div class="tab-pane fade show" id="nav-soa" role="tabpanel" aria-labelledby="nav-soa-tab" >
+     <img src='/media/sem_syllabus/soa1.jpg'>
+     <hr>
+     <img src='/media/sem_syllabus/soa2.jpg'>
+  </div>
+  <div class="tab-pane fade show" id="nav-ecom" role="tabpanel" aria-labelledby="nav-ecom-tab" >
+     <img src='/media/sem_syllabus/ecom.jpg'>
+  </div>
+  <div class="tab-pane fade show" id="nav-oscm" role="tabpanel" aria-labelledby="nav-oscm-tab" >
+     <img src='/media/sem_syllabus/oscm.jpg'>
+  </div>
+  <div class="tab-pane fade show" id="nav-viva" role="tabpanel" aria-labelledby="nav-viva-tab" >
+     <img src='/media/sem_syllabus/viva.jpg'>
+  </div>
+  <div class="tab-pane fade show" id="nav-project" role="tabpanel" aria-labelledby="nav-project-tab">
+     <img src='/media/sem_syllabus/PRO.jpg'>
+  </div>
+</div>
+<br>
+<hr>
+<br>
+<!--<nav>-->
+<!--      <h5>Upcoming Exams</h5>-->
+<!--      <br>-->
+<!--  <div class="nav nav-tabs" id="nav-tab" role="tablist">-->
+<!--    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Semester Timetable</a>-->
+<!--  </div>-->
+<!--</nav>-->
+<!--<div class="tab-content shadow" id="nav-tabContent">-->
+<!--  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">-->
+<!--      <br>-->
+<!--            <h5 class="text-center">VII Semester Schedule (29/12/2020) </h5>-->
+<!--            <div class="table-responsive-sm">-->
+
+<!--            <table class="table table-bordered table-hover">-->
+<!--                <caption><small>VII semester schedule(section: B13) updated at 20:00 on 15/12/2020</small></caption>-->
+<!--                 <thead class=" font-weight-bold">-->
+<!--                    <tr >-->
+<!--                        <th scope="col">Subject</th>-->
+<!--                        <th scope="col">Date</th>-->
+<!--                        <th scope="col">Time</th>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
+<!--                    <tr class="table-success">-->
+<!--                        <td scope="row">ECS 401 Cryptography and Network Security</td>-->
+<!--                        <td>29-12-2020 TUESDAY</td>-->
+<!--                        <td>9:30-12:00</td>-->
+<!--                    </tr>-->
+<!--                     <tr>-->
+<!--                        <td scope="row" colspan="3" class="text-center">HOLIDAY</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="table-success">-->
+<!--                        <td scope="row">EID 403 Machine Learning</td>-->
+<!--                        <td>31-12-2020 THURSDAY</td>-->
+<!--                        <td>9:30-12:00</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row" colspan="3" class="text-center ">HOLIDAY</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row" colspan="3" class="text-center ">HOLIDAY</td>-->
+<!--                        <div class="text-center" style="position: sticky;align-items: center;display: flex;justify-content: center;left: 10px;top: 200px;height: 100%;width: 100%; z-index:100;">-->
+<!--                            <p style="position: sticky;color: rgb(184,236,223);font-size: 2rem;font-weight: bold;transform: rotate(-45deg);user-select: none;">-->
+<!--                                COMPLETED-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row" colspan="3" class="text-center ">HOLIDAY</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="table-success">-->
+<!--                        <td scope="row">EID 445 Cloud Computing</td>-->
+<!--                        <td>04-01-2021 MONDAY</td>-->
+<!--                        <td>9:30-12:00</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row" colspan="3" class="text-center">HOLIDAY</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="table-success">-->
+<!--                        <td scope="row">EID 451 Open Source Software Development</td>-->
+<!--                        <td>06-01-2021 WEDNESDAY</td>-->
+<!--                        <td>9:30-12:00</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td scope="row" colspan="3" class="text-center">HOLIDAY</td>-->
+<!--                    </tr>-->
+<!--                    <tr class="table-success">-->
+<!--                        <td scope="row">EHS 403 Disaster Management</td>-->
+<!--                        <td>08-01-2021 FRIDAY</td>-->
+<!--                        <td>9:30-12:00</td>-->
+<!--                    </tr>-->
+<!--                </tbody>-->
+<!--            </table>-->
+<!--            </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+    {% if request.user.is_authenticated and request.user.profile.section == "B13" %}
+    <!-- News templatetag -->
+    <div class="row mb-3">
+        <div class="col-md-7 shadow-lg p-3 m-2 mr-2 mb-3 ">
+            {% requests %}
+        </div>
+        <div class="col-md-4 m-2 shadow-lg" >
+            {% news %}
+        </div>
+    </div>
+    <!-- Requests templatetag -->
+    {%endif%}
+    <br><br>
+    <div class="row">
+                <div class="col-md-6">
+                        {% if request.user.is_authenticated %}
+                            <div class="p-2 mr-1 mb-4 shadow-lg">
+                                <h5  class="pt-2 pl-2">Your Active Placements</h5>
+                                <hr>
+                                {% if request.user.profile.current_events.count %}
+                                    {% for event in request.user.profile.current_events.all %}
+                                        {% if not event.is_completed %}
+                                            <a class="btn btn-primary shadow-lg m-2" style="color: white;"  href="{% url 'calendarapp:event-detail' event.id %}">{{event.title}} </a>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <p class="btn btn-light shadow-lg">No active placements</p><br>
+                                    <small>Contact your CR, if there is any error.</small>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <p class="m-2 p-4 shadow-lg font-weight-bold">Login to know active placements.</p><br>
+                        {% endif %}
+
+                </div>
+                <div class="col-md-5 m-2 p-4 shadow-lg font-weight-bold">
+                    {% if request.user.profile.section == "B13" %}
+                        <h5>Congratulations guys you made it!</h5>
+                        <hr>
+                        1. Harshal Patel(TCS digital & Accenture)<br>
+                        2. Meghana (Accenture)<br>
+                        3. Pravallika (Accenture)<br>
+                        4. N Jahnavi (Accenture)<br>
+                        5. M Vikranth (Accenture)<br>
+                        6. Likhitha (Accenture)<br>
+                        7. Kushwanth(Accenture)<br>
+                        8. K Vamsi (Accenture 4.5LPA & TCS DIGITAL 7LPA & Cognizant GenC Next 6.75LPA)<br>
+                        9. Y Bindu (Cognizant GenC & TCS)<br>
+                        10. P Jahnavi(TCS)<br>
+                        11. Animesh (KEKA)<br>
+                        12. G Nageshwararao (Microfocus) <small>⛊ 11/12/2020</small><br>
+                        13. Avinash (Microfocus) <small>⛊ 11/12/2020</small><br>
+                        14. Alekhya (Cognizant GenC) <small>⛊  18/12/2020</small><br>
+                        15. Monika (Cognizant GenC) <small>⛊ 18/12/2020</small><br>
+                        16. Uday (Cognizant GenC) <small>⛊ 18/12/2020</small><br>
+                        17. Kiranmai (Cognizant GenC) <small>⛊ 18/12/2020</small><br>
+                        18. Praveen (Cognizant GenC) <small>⛊ 18/12/2020</small><br>
+                        19. Sagar (Cognizant GenC) <small>⛊ 18/12/2020</small><br>
+                        20. Sowmya (Cognizant GenC) <small>⛊ 18/12/2020</small><br>
+                        <hr>
+                        <small >Confirm your LOI. This doesnot effect any upcoming CRDs except it must have a salary of 1.5times your current offer.</small>
+                    {% else %}
+                    <p>Know your class news and events.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+
+            <div class="shadow-lg p-4 mb-4 mt-4" >
+                <h4>Announcements</h4>
+                <hr>
+                <div class='d-flex justify-content-around'>
+                <div class='d-flex flex-column'>
+                    <p class='font-weight-bold m-2 p-2 '>Drives completed</p><br>
+                    <p class="btn btn-light border border-dark shadow">Keka</p><br>
+                    <p class="btn btn-light border border-dark shadow">Deloitte</p><br>
+                    <p class="btn btn-light border border-dark shadow">Mindtree</p><br>
+                    <a href="{% url 'calendarapp:event-detail' 4 %}" class="btn btn-light border border-dark shadow">TCS Digital</a><br>
+                    <a href="{% url 'calendarapp:event-detail' 1 %}" class="btn btn-light border border-dark shadow">Accenture</a><br>
+                </div>
+                <div class='d-flex flex-column ml-1'>
+                    <a class='font-weight-bold m-2 p-2'>Drives in progress</a><br>
+
+                    <a href="{% url 'calendarapp:event-detail' 5 %}" class="btn btn-light border border-success shadow">Amazon </a><br>
+                    <a href="{% url 'calendarapp:event-detail' 2 %}" class="btn btn-light border border-success shadow">Cognizant</a><br>
+                    <a href="{% url 'calendarapp:event-detail' 3 %}" class="btn btn-light border border-success shadow">TCS NQT</a><br>
+                </div>
+                <div class='d-flex flex-column ml-1'>
+                    <p class='font-weight-bold m-2 p-2'>Upcoming Drives</p><br>
+                    <a href="#" class="btn btn-light border border-warning shadow">Informatica</a><br>
+                    <a href="#" class="btn btn-light border border-warning shadow">Prodapt</a><br>
+                    <a href="#" class="btn btn-light border border-warning shadow">TCS CTO Hiring</a><br>
+                </div>
+                </div>
+            </div>
+        <br>
+{% endblock %}
